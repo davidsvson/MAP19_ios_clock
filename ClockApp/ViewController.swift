@@ -10,10 +10,29 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    var timer: Timer?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        updateTimeLabel()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.updateTimeLabel), userInfo: nil, repeats: true)
+      
     }
+    
+    
+    @objc func updateTimeLabel() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        let timeString = formatter.string(from: date)
+               
+        timeLabel.text = timeString
+    }
+    
 
 
 }

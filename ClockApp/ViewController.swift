@@ -15,14 +15,12 @@ class ViewController: UIViewController {
     
     var timer: Timer?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTimeLabel()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.updateTimeLabel), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(ViewController.updateTimeLabel), userInfo: nil, repeats: true)
       
     }
-    
     
     @objc func updateTimeLabel() {
         let date = Date()
@@ -33,6 +31,18 @@ class ViewController: UIViewController {
         timeLabel.text = timeString
     }
     
+    
+    deinit {
+//        if timer != nil {
+//            timer!.invalidate()
+//        }
+        
+        if let timer = self.timer {
+            timer.invalidate()
+        }
+        
+   //     timer?.invalidate()
+    }
 
 
 }

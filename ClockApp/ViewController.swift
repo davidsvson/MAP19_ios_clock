@@ -18,11 +18,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTimeLabel()
-        timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(ViewController.updateTimeLabel), userInfo: nil, repeats: true)
+       timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true, block: updateTimeLabel(timer:))
+      //  timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(ViewController.updateTimeLabel), userInfo: nil, repeats: true)
       
     }
     
-    @objc func updateTimeLabel() {
+   func updateTimeLabel(timer : Timer? = nil) {
         let date = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
